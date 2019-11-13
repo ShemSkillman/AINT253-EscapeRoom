@@ -2,7 +2,7 @@
 
 public class Inspectable : MonoBehaviour
 {
-    Camera inspectionCamera;
+    protected Camera inspectionCamera;
 
     private void Awake()
     {
@@ -11,10 +11,10 @@ public class Inspectable : MonoBehaviour
 
     private void Start()
     {
-        ActivateCamera(false);
+        ActivateInspection(false);
     }
 
-    public void ActivateCamera(bool isActive)
+    public virtual void ActivateInspection(bool isActive)
     {
         inspectionCamera.gameObject.SetActive(isActive);
     }

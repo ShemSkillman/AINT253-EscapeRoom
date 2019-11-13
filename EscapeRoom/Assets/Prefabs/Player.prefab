@@ -222,4 +222,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096921173e461a64cb816c8c0c4f4293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxInspectionDistance: 2
+  maxInspectionDistance: 3

@@ -1937,6 +1937,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6037795507565106258, guid: f7c36e01b38aa9b47a444185b067754d,
+        type: 3}
+      propertyPath: overlayCanvas
+      value: 
+      objectReference: {fileID: 1583058815}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7c36e01b38aa9b47a444185b067754d, type: 3}
 --- !u!1001 &4649222503942111398
@@ -2074,21 +2079,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676223263099307781, guid: 3a4a7c74911f0e240ba13a4bcb817bc1,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676223263099307781, guid: 3a4a7c74911f0e240ba13a4bcb817bc1,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676223263099307781, guid: 3a4a7c74911f0e240ba13a4bcb817bc1,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4a7c74911f0e240ba13a4bcb817bc1, type: 3}

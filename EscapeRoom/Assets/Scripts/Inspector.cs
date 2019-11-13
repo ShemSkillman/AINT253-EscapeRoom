@@ -9,6 +9,7 @@ public class Inspector : MonoBehaviour
     Mover mover;
 
     [SerializeField] float maxInspectionDistance = 4f;
+    [SerializeField] Canvas overlayCanvas;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class Inspector : MonoBehaviour
 
             if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out RaycastHit hit, maxInspectionDistance, interactablesLayer))
             {
-                Inspectable inspectable = hit.collider.gameObject.GetComponent<Inspectable>();
+                Inspectable inspectable = hit.collider.gameObject.GetComponentInParent<Inspectable>();
 
                 if (inspectable == null) return;
 
@@ -38,12 +39,14 @@ public class Inspector : MonoBehaviour
                 if (isInspecting)
                 {
                     mover.IsFrozen = false;
-                    inspectable.ActivateCamera(false);
+                    inspectable.ActivateInspection(false);
+                    overlayCanvas.gameObject.SetActive(true);
                 }
                 else
                 {
                     mover.IsFrozen = true;
-                    inspectable.ActivateCamera(true);
+                    inspectable.ActivateInspection(true);
+                    overlayCanvas.gameObject.SetActive(false);
                 }
             }
         }
