@@ -63,7 +63,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5660827827587348596}
   - component: {fileID: 2037525576104405525}
   - component: {fileID: 8807912925516710461}
+  - component: {fileID: 6037795507565106258}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -209,3 +210,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
   rotationSpeed: 1
+--- !u!114 &6037795507565106258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4762946300489118698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096921173e461a64cb816c8c0c4f4293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxInspectionDistance: 2
