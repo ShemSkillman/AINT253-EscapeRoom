@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Safe : MonoBehaviour, IControllable
+public class Safe : ClickInteractable
 {
     [SerializeField] int codeCombination = 1234;
     [SerializeField] int attempt = -1;
@@ -13,12 +13,13 @@ public class Safe : MonoBehaviour, IControllable
 
     bool unlocked = false;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
     }
 
-    public void sendButtonID(int id)
+    protected override void SendButtonID(int id)
     {
         if (unlocked) return;
         
@@ -43,10 +44,9 @@ public class Safe : MonoBehaviour, IControllable
         }
     }
 
-    private void OpenSafe()
+    protected void OpenSafe()
     {
         animator.SetTrigger("openSafe");
-
     }
     
 }

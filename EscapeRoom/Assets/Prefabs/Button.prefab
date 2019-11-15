@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5604810337127968634}
   - component: {fileID: 2214331149264439582}
-  - component: {fileID: 2014238441469258509}
+  - component: {fileID: 4879351408135155769}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -144,7 +144,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2014238441469258509
+--- !u!114 &4879351408135155769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4731941582385714781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 030cb80bf8388cb46b304b5ea0cb74df, type: 3}
+  m_Script: {fileID: 11500000, guid: fec2724683b9f214b8d6cb57f4304d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0

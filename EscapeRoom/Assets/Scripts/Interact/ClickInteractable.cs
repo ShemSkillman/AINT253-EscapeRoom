@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickInspectable : Inspectable
+public class ClickInteractable : Interactable
 {
     bool isActive = false;
 
-    public override void ActivateInspection(bool isActive)
+    protected override void Trigger(bool isActive)
     {
-        base.ActivateInspection(isActive);
         Cursor.visible = isActive;
         this.isActive = isActive;
     }
 
-    private void Update()
+    protected void Update()
     {
         if (!isActive) return;
 
@@ -29,9 +28,10 @@ public class ClickInspectable : Inspectable
 
                 button.PushButton();
 
-                IControllable controllable = GetComponentInParent<IControllable>();
-                if (controllable != null) controllable.sendButtonID(button.GetID());
+                SendButtonID(button.GetID());
             }
         }
     }
+
+    protected virtual void SendButtonID(int id) { }
 }

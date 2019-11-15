@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    [SerializeField] int id;
+    [SerializeField] int id = 0;
 
     // Cache references
     Animator animator;
