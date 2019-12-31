@@ -1,37 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using EscapeRoom.Interact.Item;
 using UnityEngine;
 
-public class ClickInteractable : Interactable
+namespace EscapeRoom.Interact
 {
-    bool isActive = false;
-
-    protected override void Trigger(bool isActive)
+    public class ClickInteractable : Interactable
     {
-        Cursor.visible = isActive;
-        this.isActive = isActive;
-    }
+        bool isActive = false;
 
-    protected void Update()
-    {
-        if (!isActive) return;
-
-        Ray ray = inspectionCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0))
+        protected override void Trigger(bool isActive)
         {
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            Cursor.visible = isActive;
+            this.isActive = isActive;
+        }
+
+        protected void Update()
+        {
+            if (!isActive) return;
+
+            Ray ray = inspectionCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Input.GetMouseButtonDown(0))
             {
-                Button button = hit.collider.gameObject.GetComponentInParent<Button>();
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+                {
+                    Button button = hit.collider.gameObject.GetComponentInParent<Button>();
 
-                if (button == null) return;
+                    if (button == null) return;
 
-                button.PushButton();
+                    button.PushButton();
 
-                SendButtonID(button.GetID());
+                    SendButtonID(button.GetID());
+                }
             }
         }
-    }
 
-    protected virtual void SendButtonID(int id) { }
+        protected virtual void SendButtonID(int id) { }
+    }
 }
+

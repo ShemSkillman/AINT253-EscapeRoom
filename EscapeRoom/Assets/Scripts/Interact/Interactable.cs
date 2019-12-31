@@ -1,24 +1,33 @@
 ﻿using UnityEngine;
 
-public class Interactable : MonoBehaviour
+namespace EscapeRoom.Interact
 {
-    [SerializeField] protected Camera inspectionCamera;
-
-    protected virtual void Awake()
+    public class Interactable : MonoBehaviour
     {
-        inspectionCamera = GetComponentInChildren<Camera>();
-    }
+        [SerializeField] protected Camera inspectionCamera;
 
-    protected void Start()
-    {
-        ActivateInteraction(false);
-    }
+        protected virtual void Awake()
+        {
+            inspectionCamera = GetComponentInChildren<Camera>();
+        }
 
-    public Camera ActivateInteraction(bool isActive)
-    {
-        Trigger(isActive);
-        return inspectionCamera;
-    }
+        protected virtual void Start()
+        {
+            ActivateInteraction(false);
+        }
 
-    protected virtual void Trigger(bool isActive){ }
+        public Camera ActivateInteraction(bool isActive)
+        {
+            Trigger(isActive);
+            return inspectionCamera;
+        }
+
+        protected virtual void Trigger(bool isActive) { }
+
+        public virtual bool IsInteractionValid()
+        {
+            return true;
+        }
+    }
 }
+

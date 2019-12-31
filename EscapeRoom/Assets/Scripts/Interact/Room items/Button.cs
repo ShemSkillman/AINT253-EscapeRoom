@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+namespace EscapeRoom.Interact.Item
 {
-    [SerializeField] int id = 0;
-
-    // Cache references
-    Animator animator;
-
-    private void Awake()
+    public class Button : MonoBehaviour
     {
-        animator = GetComponent<Animator>();
-    }
+        [SerializeField] int id = 0;
 
-    public void PushButton()
-    {
-        animator.SetTrigger("buttonPush");
-    }
+        // Cache references
+        Animator animator;
 
-    public int GetID()
-    {
-        return id;
+        private void Awake()
+        {
+            animator = GetComponent<Animator>();
+        }
+
+        public void PushButton()
+        {
+            animator.SetTrigger("buttonPush");
+        }
+
+        public int GetID()
+        {
+            return id;
+        }
     }
 }
+

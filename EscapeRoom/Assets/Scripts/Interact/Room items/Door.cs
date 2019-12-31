@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using EscapeRoom.Interact;
 using UnityEngine;
 
-public class Door : Interactable
+namespace EscapeRoom.Item
 {
-    Animator animator;
+    public class Door : Interactable
+    {
+        Animator animator;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        animator = GetComponentInParent<Animator>();
-    }
-    protected override void Trigger(bool isActive)
-    {
-        if (isActive) OpenDoor();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+            animator = GetComponentInParent<Animator>();
+        }
+        protected override void Trigger(bool isActive)
+        {
+            if (isActive) OpenDoor();
+        }
 
-    private void OpenDoor()
-    {
-        animator.SetTrigger("openDoor");
+        private void OpenDoor()
+        {
+            animator.SetTrigger("openDoor");
+        }
     }
 }
+
