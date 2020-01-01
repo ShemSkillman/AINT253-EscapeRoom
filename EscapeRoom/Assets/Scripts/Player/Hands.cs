@@ -10,7 +10,7 @@ namespace EscapeRoom.Player
 
         public void HoldItem(GameObject item)
         {
-            if (item == currentlyHeldItem) return;
+            if (item == currentlyHeldItem || item == null) return;
 
             EmptyHands();
 

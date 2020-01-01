@@ -9,9 +9,16 @@ namespace EscapeRoom.Player
     public class Inventory : MonoBehaviour
     {
         List<InventoryItem> items = new List<InventoryItem>();
+        InventoryItem selectedItem;
+        Hands hands;
 
         public delegate void OnInventoryChange();
         public event OnInventoryChange onInventoryChange;
+
+        private void Awake()
+        {
+            hands = GetComponent<Hands>();
+        }
 
         public void AddItem(GameObject itemPrefab, Sprite inventoryIcon)
         {
@@ -25,6 +32,8 @@ namespace EscapeRoom.Player
             if (!items.Contains(item)) return;
 
             items.Remove(item);
+            hands.EmptyHands();
+            selectedItem = null;
 
             onInventoryChange?.Invoke();
         }
@@ -33,7 +42,29 @@ namespace EscapeRoom.Player
         {
             return items;
         }
-    }
+
+        public void SelectItem(int itemIndex, bool isSelected)
+        {
+            if (itemIndex >= items.Count) return;
+            GameObject itemPrefab = items[itemIndex].Item;
+
+            if (isSelected)
+            {
+                hands.HoldItem(itemPrefab);
+                selectedItem = items[itemIndex];
+            }
+            else
+            {
+                hands.EmptyHands();
+                selectedItem = null;
+            }
+        }
+
+        public InventoryItem GetSelectedItem()
+        {
+            return selectedItem;
+        }
+    }    
 
     public class InventoryItem
     {

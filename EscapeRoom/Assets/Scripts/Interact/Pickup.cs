@@ -22,6 +22,11 @@ namespace EscapeRoom.Interact
             inventory.AddItem(itemPrefab, inventoryIcon);
             Destroy(gameObject);
         }
+
+        public void SetItemPrefab(GameObject prefab)
+        {
+            itemPrefab = prefab;
+        }
     }
 }
 

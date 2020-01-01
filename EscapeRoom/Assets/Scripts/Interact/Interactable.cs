@@ -5,6 +5,7 @@ namespace EscapeRoom.Interact
     public class Interactable : MonoBehaviour
     {
         [SerializeField] protected Camera inspectionCamera;
+        bool isInteractable = true;
 
         protected virtual void Awake()
         {
@@ -27,6 +28,21 @@ namespace EscapeRoom.Interact
         public virtual bool IsInteractionValid()
         {
             return true;
+        }
+
+        public bool GetIsInteractable()
+        {
+            return isInteractable;
+        }
+
+        public void SetIsInteractable(bool isInteractable)
+        {
+            this.isInteractable = isInteractable;
+        }
+
+        public virtual void FinishInteraction()
+        {
+
         }
     }
 }

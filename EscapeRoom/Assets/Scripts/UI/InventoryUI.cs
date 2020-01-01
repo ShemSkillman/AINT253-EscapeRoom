@@ -9,7 +9,6 @@ namespace EscapeRoom.UI
     public class InventoryUI : MonoBehaviour
     {
         Inventory inventory;
-        Hands hands;
         
         [SerializeField] Button previousPageButton;
         [SerializeField] Button nextPageButton;
@@ -19,13 +18,11 @@ namespace EscapeRoom.UI
         List<InventoryItem> items = new List<InventoryItem>();
         int pageCount;
         InventorySlot[] slots;
-        InventoryItem selectedItem;
 
         private void Awake()
         {
             inventory = FindObjectOfType<Inventory>();
             slots = GetComponentsInChildren<InventorySlot>();
-            hands = FindObjectOfType<Hands>();
         }
 
         private void Start()
@@ -47,6 +44,11 @@ namespace EscapeRoom.UI
 
         private void UpdateDisplay()
         {
+            foreach(Toggle toggle in GetComponentsInChildren<Toggle>())
+            {
+                toggle.isOn = false;
+            }
+
             items = inventory.GetItems();
 
             if (items.Count < 1)
@@ -91,18 +93,8 @@ namespace EscapeRoom.UI
             int pageItemIndex = slotNumber - 1;
 
             int itemIndex = currentPageIndex * slotsPerPage + pageItemIndex;
-            GameObject itemPrefab = items[itemIndex].Item;
 
-            if (isSelected)
-            {
-                hands.HoldItem(itemPrefab);
-                selectedItem = items[itemIndex];
-            }
-            else
-            {
-                hands.EmptyHands();
-                selectedItem = items[itemIndex];
-            }
+            inventory.SelectItem(itemIndex, isSelected);
         }
 
         public void PreviousPage()
@@ -135,12 +127,6 @@ namespace EscapeRoom.UI
 
             if (currentPageIndex + 1 >= pageCount) nextPageButton.interactable = false;
             else nextPageButton.interactable = true;
-        }
-
-        public GameObject GetSelectedItem()
-        {
-            if (selectedItem == null) return null;
-            return selectedItem.Item;
         }
     }
 

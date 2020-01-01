@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EscapeRoom.Interact.Drop;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,29 +9,38 @@ namespace EscapeRoom.Interact.Item
     {
         [SerializeField] Colour bookColour;
 
-        Bookshelf bookShelf;
+        BookSlot bookSlot;
         int childIndex;
 
         protected override void Awake()
         {
             base.Awake();
-            bookShelf = GetComponentInParent<Bookshelf>();
+            bookSlot = GetComponentInParent<BookSlot>();
         }
 
         protected override void Start()
         {
-            childIndex = transform.GetSiblingIndex();
-            base.Start();
-            bookShelf.PlaceBook(bookColour, childIndex);
+            if (bookSlot != null) bookSlot.PlaceBook(this);
         }
 
         protected override void Trigger(bool isActive)
         {
-            bookShelf.PickUpBook(childIndex);
-
-            base.Trigger(isActive);
             if (!isActive) return;
 
+            bookSlot.RemoveBook();
+            bookSlot = null;
+
+            base.Trigger(isActive);
+        }
+
+        public void SetBookSlot(BookSlot bookSlot)
+        {
+            this.bookSlot = bookSlot;
+        }
+
+        public Colour GetBookColour()
+        {
+            return bookColour;
         }
     }    
 }
@@ -43,6 +53,7 @@ public enum Colour
     Green,
     Purple,
     Pink,
-    Red
+    Red,
+    None
 }
 

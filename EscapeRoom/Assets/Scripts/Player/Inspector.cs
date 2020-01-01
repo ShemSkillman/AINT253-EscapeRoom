@@ -15,6 +15,8 @@ namespace EscapeRoom.Player
         [SerializeField] Canvas overlayCanvas = null;
         [SerializeField] Reticle reticle;
 
+        Interactable pointedAtItem;
+
         private void Awake()
         {
             playerCamera = GetComponentInChildren<Camera>();
@@ -35,14 +37,15 @@ namespace EscapeRoom.Player
             {
                 interactable = hit.collider.gameObject.GetComponentInParent<Interactable>();
 
-                if (interactable == null)
+                if (pointedAtItem != interactable)
+                {
+                    if (pointedAtItem != null) pointedAtItem.FinishInteraction();
+                    pointedAtItem = interactable;
+                }
+
+                if (interactable == null || !interactable.IsInteractionValid() || !interactable.GetIsInteractable())
                 {
                     reticle.SetDefault();
-                    return;
-                }
-                else if (!interactable.IsInteractionValid())
-                {
-                    //reticle error
                     return;
                 }
 
@@ -50,6 +53,7 @@ namespace EscapeRoom.Player
             }
             else
             {
+                if (pointedAtItem != null) pointedAtItem.FinishInteraction();
                 reticle.SetDefault();
             }
 
@@ -64,6 +68,7 @@ namespace EscapeRoom.Player
                 {
                     currentInspectionCamera = interactable.ActivateInteraction(true);
                     if (currentInspectionCamera != null) IsFixedCameraView(true);
+                    if (pointedAtItem != null) pointedAtItem.FinishInteraction();
                 }
             }
 

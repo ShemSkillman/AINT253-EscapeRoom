@@ -6,35 +6,52 @@ namespace EscapeRoom.Interact.Item
 {
     public class Bookshelf : MonoBehaviour
     {
-        [SerializeField] Transform booksParent;
-        [SerializeField] Transform slotsParent;
+        [SerializeField] Colour slotOneBookColour;
+        [SerializeField] Colour slotTwoBookColour;
+        [SerializeField] Colour slotThreeBookColour;
+        [SerializeField] Colour slotFourBookColour;
+        [SerializeField] Colour slotFiveBookColour;
+        [SerializeField] Colour slotSixBookColour;
+        [SerializeField] Colour slotSevenBookColour;
 
-        Colour[] bookColourOrder = new Colour[7];
-        bool[] bookSpaceOccupied = new bool[7];
+        Colour[] currentBookColourOrder = new Colour[7];
+        Colour[] colourCode;
 
-        private void Start()
+        private void Awake()
         {
-            for(int i = 0; i < bookSpaceOccupied.Length; i++)
+            colourCode = new Colour[] { slotOneBookColour, slotTwoBookColour, slotThreeBookColour, slotFourBookColour,
+                slotFiveBookColour, slotSixBookColour, slotSevenBookColour};
+
+            for (int i = 0; i < 7; i++)
             {
-                bookSpaceOccupied[i] = true;
+                currentBookColourOrder[i] = Colour.None;
             }
         }
 
-        public void PickUpBook(int bookIndex)
+        public void SetBookColourOrder(int bookIndex, Colour colour)
         {
-            print("picking up book at " + bookIndex);
-            bookSpaceOccupied[bookIndex] = false;
+            currentBookColourOrder[bookIndex] = colour;
 
-            slotsParent.GetChild(bookIndex).gameObject.SetActive(true);
+            bool solved = CheckSequenceCorrect();
+
+            if (solved) print("Puzzle solved!");
         }
 
-        public void PlaceBook(Colour bookColour, int bookIndex)
+        private bool CheckSequenceCorrect()
         {
-            bookSpaceOccupied[bookIndex] = true;
+            for(int i = 0; i < 7; i++)
+            {
+                Colour colour = currentBookColourOrder[i];
 
-            slotsParent.GetChild(bookIndex).gameObject.SetActive(false);
+                if (colour != colourCode[i]) return false;
+            }
 
-            bookColourOrder[bookIndex] = bookColour;
+            return true;
+        }
+
+        public Colour[] GetColourCode()
+        {
+            return colourCode;
         }
     }
 }
