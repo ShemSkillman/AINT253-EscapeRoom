@@ -11,14 +11,14 @@ namespace EscapeRoom.Interact
         [SerializeField] protected Transform ghostSpawnLocation;
         protected Inventory inventory;
 
-        GameObject itemGhost;
+        protected GameObject itemGhost;
 
         protected override void Awake()
         {
             inventory = FindObjectOfType<Inventory>();
         }
 
-        protected void ShowItemGhost()
+        protected virtual void ShowItemGhost()
         {
             if (itemGhost != null) return;
 
@@ -28,7 +28,7 @@ namespace EscapeRoom.Interact
             itemGhost = Instantiate(itemGhostPrefab, spawnTransform.position, spawnTransform.rotation);
         }
 
-        protected void RemoveItemGhost()
+        protected virtual void RemoveItemGhost()
         {
             if (itemGhost == null) return;
 

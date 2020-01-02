@@ -6,32 +6,38 @@ namespace EscapeRoom.Item
 {
     public class Safe : ClickInteractable
     {
-        [SerializeField] int codeCombination = 1234;
-        [SerializeField] int attempt = -1;
         [SerializeField] float openDelay = 2f;
 
         Animator animator;
 
         bool unlocked = false;
+        string codeCombination;
+        string attempt = "";
 
         protected override void Awake()
         {
             base.Awake();
             animator = GetComponent<Animator>();
+            GenerateRandomCode();
+        }
+
+        private void GenerateRandomCode()
+        {
+            int code = UnityEngine.Random.Range(0, 10000);
+
+            codeCombination = code.ToString();
+
+            while(codeCombination.Length < 4)
+            {
+                codeCombination = "0" + codeCombination;
+            }
         }
 
         protected override void SendButtonID(int id)
         {
             if (unlocked) return;
 
-            if (attempt == -1)
-            {
-                attempt = id;
-            }
-            else
-            {
-                attempt = Convert.ToInt32(attempt.ToString() + id.ToString());
-            }
+            attempt += id.ToString();
 
             if (attempt == codeCombination)
             {
@@ -39,15 +45,20 @@ namespace EscapeRoom.Item
                 Invoke("OpenSafe", openDelay);
                 return;
             }
-            else if (attempt.ToString().Length >= codeCombination.ToString().Length)
+            else if (attempt.Length >= codeCombination.Length)
             {
-                attempt = -1;
+                attempt = "";
             }
         }
 
         protected void OpenSafe()
         {
             animator.SetTrigger("openSafe");
+        }
+
+        public string GetCode()
+        {
+            return codeCombination;
         }
 
     }

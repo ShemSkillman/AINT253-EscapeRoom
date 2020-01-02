@@ -33,7 +33,7 @@ namespace EscapeRoom.Player
             Interactable interactable = null;
             Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
 
-            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out RaycastHit hit, maxInspectionDistance, interactablesLayer))
+            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out RaycastHit hit, maxInspectionDistance))
             {
                 interactable = hit.collider.gameObject.GetComponentInParent<Interactable>();
 

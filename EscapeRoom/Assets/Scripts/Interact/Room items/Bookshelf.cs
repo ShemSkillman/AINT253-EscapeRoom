@@ -6,6 +6,8 @@ namespace EscapeRoom.Interact.Item
 {
     public class Bookshelf : MonoBehaviour
     {
+        [SerializeField] float bookshelfMoveDelay = 1f;
+        [Header("Colour code")]
         [SerializeField] Colour slotOneBookColour;
         [SerializeField] Colour slotTwoBookColour;
         [SerializeField] Colour slotThreeBookColour;
@@ -17,8 +19,12 @@ namespace EscapeRoom.Interact.Item
         Colour[] currentBookColourOrder = new Colour[7];
         Colour[] colourCode;
 
+        Animator animator;
+
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+
             colourCode = new Colour[] { slotOneBookColour, slotTwoBookColour, slotThreeBookColour, slotFourBookColour,
                 slotFiveBookColour, slotSixBookColour, slotSevenBookColour};
 
@@ -34,7 +40,12 @@ namespace EscapeRoom.Interact.Item
 
             bool solved = CheckSequenceCorrect();
 
-            if (solved) print("Puzzle solved!");
+            if (solved) Invoke("PlayAnimation", bookshelfMoveDelay);
+        }
+
+        private void PlayAnimation()
+        {
+            animator.SetTrigger("bookshelfMove");
         }
 
         private bool CheckSequenceCorrect()

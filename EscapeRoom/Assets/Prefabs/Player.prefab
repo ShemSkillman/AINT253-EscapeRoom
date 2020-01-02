@@ -161,12 +161,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!114 &8807912925516710461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,11 +179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b43d6e8ffa387478aa8e9569bb096b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 6
   rotationSpeed: 1
   playerCharacter: {fileID: 9219437690412599610}
   eyes: {fileID: 3356538986155239973}
   playerCam: {fileID: 2037525575844641366}
+  jumpForce: 20
+  jumpCoolDown: 1
 --- !u!114 &6037795507565106258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096921173e461a64cb816c8c0c4f4293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxInspectionDistance: 3
+  maxInspectionDistance: 5
   overlayCanvas: {fileID: 0}
   reticle: {fileID: 0}
 --- !u!114 &6873604391034415105
@@ -252,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 5181563349872011968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children:
   - {fileID: 3356538986155239973}
   m_Father: {fileID: 62759194458678188}
@@ -311,7 +313,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5181563349872011968}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d0b4df398240825448ccf926f6a9c98e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
