@@ -15,12 +15,11 @@ namespace EscapeRoom.Interact.Item
         protected override void Awake()
         {
             base.Awake();
-            bookSlot = GetComponentInParent<BookSlot>();
         }
 
         protected override void Start()
         {
-            if (bookSlot != null) bookSlot.PlaceBook(this);
+            bookSlot = GetComponentInParent<BookSlot>();
         }
 
         protected override void Trigger(bool isActive)

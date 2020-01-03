@@ -1,4 +1,5 @@
-﻿using EscapeRoom.Interact.Item;
+﻿using EscapeRoom.Core;
+using EscapeRoom.Interact.Item;
 using EscapeRoom.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,9 @@ namespace EscapeRoom.Interact.Drop
     {
         [SerializeField] float delayBetweenColourChange = 2f;
         [SerializeField] float delayBetweenSequence = 4f;
+
+        public delegate void OnObjectiveComplete(Objective objective);
+        public event OnObjectiveComplete onScrewInBulb;
 
         public override bool IsInteractionValid()
         {
@@ -37,6 +41,8 @@ namespace EscapeRoom.Interact.Drop
 
             Bulb bulb = instance.GetComponent<Bulb>();
             bulb.SetIsInteractable(false);
+
+            onScrewInBulb(Objective.LookForLightBulb);
 
             StartCoroutine(LightSequence(bulb));
         }

@@ -12,6 +12,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orange book
       objectReference: {fileID: 0}
+    - target: {fileID: 6557253900921844091, guid: a96203b7b893b694a93af916b99238c7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11fadabf8f13b8f4b9d19d99fc9a17d7, type: 2}
+    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
+        type: 3}
+      propertyPath: inventoryIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: cc3be2b44fdccff4bbc419e558788dc6,
+        type: 3}
+    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
+        type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 4271477312238784890, guid: f27654ac5b03a5e46b9fb5316bc9e909,
+        type: 3}
+    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
+        type: 3}
+      propertyPath: bookColour
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8165083494737869726, guid: a96203b7b893b694a93af916b99238c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,39 +89,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6557253900921844091, guid: a96203b7b893b694a93af916b99238c7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 11fadabf8f13b8f4b9d19d99fc9a17d7, type: 2}
     - target: {fileID: 471708966920977856, guid: a96203b7b893b694a93af916b99238c7,
         type: 3}
       propertyPath: itemPrefab
       value: 
-      objectReference: {fileID: 6659637121726181701, guid: 2e3b73c2d36139c47a78831aabd3b7bb,
-        type: 3}
-    - target: {fileID: 471708966920977856, guid: a96203b7b893b694a93af916b99238c7,
-        type: 3}
-      propertyPath: inventoryIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: cc3be2b44fdccff4bbc419e558788dc6,
-        type: 3}
-    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
-        type: 3}
-      propertyPath: inventoryIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: cc3be2b44fdccff4bbc419e558788dc6,
-        type: 3}
-    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
-        type: 3}
-      propertyPath: itemPrefab
-      value: 
-      objectReference: {fileID: 6659637121726181701, guid: 2e3b73c2d36139c47a78831aabd3b7bb,
-        type: 3}
-    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
-        type: 3}
-      propertyPath: bookColour
-      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 471708966920977856, guid: a96203b7b893b694a93af916b99238c7,
+        type: 3}
+      propertyPath: inventoryIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: cc3be2b44fdccff4bbc419e558788dc6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a96203b7b893b694a93af916b99238c7, type: 3}

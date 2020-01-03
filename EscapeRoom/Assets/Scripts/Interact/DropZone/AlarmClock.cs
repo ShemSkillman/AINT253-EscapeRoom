@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using EscapeRoom.Item;
 using System;
+using EscapeRoom.Core;
 
 namespace EscapeRoom.Interact.Drop
 {
@@ -21,6 +22,9 @@ namespace EscapeRoom.Interact.Drop
         bool hasOneBattery = false;
         bool isPowered = false;
         string code;
+
+        public delegate void OnObjectiveComplete(Objective objective);
+        public event OnObjectiveComplete onPowerAlarmClock;
 
         GameObject[] hiddenBatteryLocations;
 
@@ -49,7 +53,10 @@ namespace EscapeRoom.Interact.Drop
             int randomIndexOne = UnityEngine.Random.Range(0, hiddenBatteryLocations.Length);
             int randomIndexTwo = UnityEngine.Random.Range(0, hiddenBatteryLocations.Length);
 
-            if (randomIndexTwo == randomIndexOne) UnityEngine.Random.Range(0, hiddenBatteryLocations.Length);
+            while (randomIndexTwo == randomIndexOne)
+            {
+                randomIndexTwo = UnityEngine.Random.Range(0, hiddenBatteryLocations.Length);
+            }
 
             Transform locationOne = hiddenBatteryLocations[randomIndexOne].transform;
             Transform locationTwo = hiddenBatteryLocations[randomIndexTwo].transform;
@@ -119,6 +126,8 @@ namespace EscapeRoom.Interact.Drop
         {
             SetIsInteractable(false);
             animator.SetTrigger("closeBatteryCover");
+
+            onPowerAlarmClock(Objective.LookForBatteries);
         }
 
         private void PowerAlarmClock()

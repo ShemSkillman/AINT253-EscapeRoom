@@ -92,6 +92,12 @@ public class Mover : MonoBehaviour
     {
         if (IsFrozen) return;
 
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            return;
+        }
+
         rb.velocity = (transform.forward * Input.GetAxis("Vertical") * moveSpeed) + (transform.right * Input.GetAxis("Horizontal") * moveSpeed)
             + new Vector3(0, rb.velocity.y, 0);
 

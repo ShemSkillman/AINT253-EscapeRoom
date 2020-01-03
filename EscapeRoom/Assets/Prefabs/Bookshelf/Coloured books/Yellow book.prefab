@@ -12,6 +12,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow book
       objectReference: {fileID: 0}
+    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
+        type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 705156395111876402, guid: 36d7aa9d5c85bb941917ea231ab7556f,
+        type: 3}
     - target: {fileID: 8165083494737869726, guid: a96203b7b893b694a93af916b99238c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,13 +77,6 @@ PrefabInstance:
         type: 3}
       propertyPath: itemPrefab
       value: 
-      objectReference: {fileID: 4007500002119354403, guid: c855d964fb0ac2749bf7677f34ae1448,
-        type: 3}
-    - target: {fileID: 6137857033862904792, guid: a96203b7b893b694a93af916b99238c7,
-        type: 3}
-      propertyPath: itemPrefab
-      value: 
-      objectReference: {fileID: 4007500002119354403, guid: c855d964fb0ac2749bf7677f34ae1448,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a96203b7b893b694a93af916b99238c7, type: 3}

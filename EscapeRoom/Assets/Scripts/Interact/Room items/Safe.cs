@@ -1,4 +1,5 @@
-﻿using EscapeRoom.Interact;
+﻿using EscapeRoom.Core;
+using EscapeRoom.Interact;
 using System;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ namespace EscapeRoom.Item
         bool unlocked = false;
         string codeCombination;
         string attempt = "";
+
+        public delegate void OnObjectiveComplete(Objective objective);
+        public event OnObjectiveComplete onSafeOpen;
 
         protected override void Awake()
         {
@@ -43,6 +47,7 @@ namespace EscapeRoom.Item
             {
                 unlocked = true;
                 Invoke("OpenSafe", openDelay);
+                onSafeOpen(Objective.EnterSafeCode);
                 return;
             }
             else if (attempt.Length >= codeCombination.Length)

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using EscapeRoom.Core;
+using EscapeRoom.Interact.Drop;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +9,16 @@ namespace EscapeRoom.Interact.Item
     public class Bookshelf : MonoBehaviour
     {
         [SerializeField] float bookshelfMoveDelay = 1f;
-        [Header("Colour code")]
-        [SerializeField] Colour slotOneBookColour;
-        [SerializeField] Colour slotTwoBookColour;
-        [SerializeField] Colour slotThreeBookColour;
-        [SerializeField] Colour slotFourBookColour;
-        [SerializeField] Colour slotFiveBookColour;
-        [SerializeField] Colour slotSixBookColour;
-        [SerializeField] Colour slotSevenBookColour;
+        [SerializeField] List<Book> bookPrefabs;
+        [SerializeField] Transform bookSlotsParent;
 
-        Colour[] currentBookColourOrder = new Colour[7];
+        Colour[] currentBookColourOrder;
         Colour[] colourCode;
+        List<Colour> allColours = new List<Colour>();
+        bool isSetUp = false;
+
+        public delegate void OnObjectiveComplete(Objective objective);
+        public event OnObjectiveComplete onSequenceSolved;
 
         Animator animator;
 
@@ -25,22 +26,59 @@ namespace EscapeRoom.Interact.Item
         {
             animator = GetComponent<Animator>();
 
-            colourCode = new Colour[] { slotOneBookColour, slotTwoBookColour, slotThreeBookColour, slotFourBookColour,
-                slotFiveBookColour, slotSixBookColour, slotSevenBookColour};
+            int numBooks = bookPrefabs.Count;
+            currentBookColourOrder = new Colour[numBooks];
+            colourCode = new Colour[numBooks];
 
-            for (int i = 0; i < 7; i++)
+            SetUpBooks();
+            GenerateRandomColourCode();
+        }        
+
+        private void SetUpBooks()
+        {
+            BookSlot[] bookSlots = bookSlotsParent.GetComponentsInChildren<BookSlot>();
+
+            foreach (BookSlot slot in bookSlots)
             {
-                currentBookColourOrder[i] = Colour.None;
+                int randomIndex = UnityEngine.Random.Range(0, bookPrefabs.Count);
+                Book randomBook = bookPrefabs[randomIndex];
+                bookPrefabs.RemoveAt(randomIndex);
+
+                Book instance = Instantiate(randomBook, slot.transform.position, slot.transform.rotation, slot.transform);
+                slot.PlaceBook(randomBook);
+
+                allColours.Add(instance.GetBookColour());
             }
+
+            isSetUp = true;
+        }
+
+        private void GenerateRandomColourCode()
+        {
+            for (int i = 0; i < colourCode.Length; i++)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, allColours.Count);
+                Colour randomColour = allColours[randomIndex];
+                allColours.RemoveAt(randomIndex);
+
+                colourCode[i] = randomColour;
+            }
+
+            if (CheckSequenceCorrect()) GenerateRandomColourCode();
         }
 
         public void SetBookColourOrder(int bookIndex, Colour colour)
         {
             currentBookColourOrder[bookIndex] = colour;
 
-            bool solved = CheckSequenceCorrect();
+            if (!isSetUp) return;
 
-            if (solved) Invoke("PlayAnimation", bookshelfMoveDelay);
+            bool solved = CheckSequenceCorrect();
+            if (solved)
+            {
+                onSequenceSolved(Objective.ArrangeBooks);
+                Invoke("PlayAnimation", bookshelfMoveDelay);
+            }
         }
 
         private void PlayAnimation()
