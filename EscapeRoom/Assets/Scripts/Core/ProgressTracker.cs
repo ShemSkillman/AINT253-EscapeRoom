@@ -65,8 +65,6 @@ namespace EscapeRoom.Core
 
         private void ObjectiveCompleted(Objective objective)
         {
-            print(objective);
-
             for(int i = 0; i < objectivesLeftToDo.Count; i++)
             {
                 GameState state = objectivesLeftToDo[i];

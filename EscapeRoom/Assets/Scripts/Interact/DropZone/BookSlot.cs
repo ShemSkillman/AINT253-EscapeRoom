@@ -64,6 +64,8 @@ namespace EscapeRoom.Interact.Drop
         {
             if (book == null) return;
 
+            if (bookShelf == null) bookShelf = GetComponentInParent<Bookshelf>(); ;
+
             bookShelf.SetBookColourOrder(transform.GetSiblingIndex(), book.GetBookColour());
             this.book = book;
         }

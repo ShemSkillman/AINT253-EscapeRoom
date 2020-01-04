@@ -35,14 +35,18 @@ public class Mover : MonoBehaviour
     {
         if (IsFrozen == true) return;
 
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            Cursor.visible = false;
+        }
+
         if (Input.GetKey(KeyCode.LeftControl))
         {
             Cursor.visible = true;
             return;
         }
 
-        Cursor.visible = false;
-        
         if (Input.GetKeyDown(KeyCode.C))
         {
             isCrouched = !isCrouched;

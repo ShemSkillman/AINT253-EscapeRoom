@@ -11,6 +11,13 @@ namespace EscapeRoom.Core
             currentIndex++;
 
             SceneManager.LoadScene(currentIndex);
+            Time.timeScale = 1f;
+        }
+
+        public void LoadMainMenu()
+        {
+            SceneManager.LoadScene("Main Menu");
+            Time.timeScale = 1f;
         }
 
         public void Quit()

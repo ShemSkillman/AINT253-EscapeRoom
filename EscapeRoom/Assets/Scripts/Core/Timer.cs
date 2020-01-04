@@ -12,6 +12,7 @@ namespace EscapeRoom.Core
 
         private void Start()
         {
+            if (timeText == null) return;
             StartCoroutine(Clock());
         }
 
@@ -23,17 +24,33 @@ namespace EscapeRoom.Core
 
                 timeElapsed += 1;
 
-                int seconds = timeElapsed;
+                timeText.text = GetTime();
+            }
+        }
 
-                int hours = seconds / 3600;
-                seconds -= hours * 3600;
+        public string GetTime()
+        {
+            int seconds = timeElapsed;
 
-                int minutes = seconds / 60;
-                seconds -= minutes * 60;
+            int minutes = seconds / 60;
+            seconds -= minutes * 60;
 
-                timeText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
-            }            
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+
+        public string ConvertTime(int seconds)
+        {
+            int minutes = seconds / 60;
+            seconds -= minutes * 60;
+
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+
+        public int GetTimeSeconds()
+        {
+            return timeElapsed;
         }
     }
+
 }
 
