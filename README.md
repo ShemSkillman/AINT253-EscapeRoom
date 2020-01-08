@@ -1,5 +1,8 @@
 # AINT253-EscapeRoom
 
+Student name : Shem Skillman
+Student ID: 10617930
+
 Trello:
 https://trello.com/b/bb0BBhSv/aint253-escape-room
 
