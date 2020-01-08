@@ -8,6 +8,8 @@ public class RisingWater : MonoBehaviour
     [SerializeField] Transform targetHeight;
     [SerializeField] float maxGameDuration = 20f;
 
+
+    float initialDistance;
     float speed;
     bool reachedTarget = false;
 
@@ -20,9 +22,9 @@ public class RisingWater : MonoBehaviour
 
     private void Start()
     {
-        float distanceToTravel = targetHeight.position.y - transform.position.y;
+        float initialDistance = targetHeight.position.y - transform.position.y;
 
-        speed = distanceToTravel / maxGameDuration;
+        speed = initialDistance / maxGameDuration;
     }
     
     void Update()

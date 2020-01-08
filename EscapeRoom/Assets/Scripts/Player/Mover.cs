@@ -11,17 +11,23 @@ public class Mover : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] float jumpForce = 10f;
     [SerializeField] float jumpCoolDown = 1.5f;
+    [SerializeField] RandomAudioPlayer crouchPlayer;
+    [SerializeField] RandomAudioPlayer jumpPlayer;
+
+    AudioSource audioSource;
 
     Rigidbody rb;
 
     bool canJump = true;
     bool isCrouched = false;
+    bool isMoving = false;
 
     public bool IsFrozen { get; set; }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -33,7 +39,11 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsFrozen == true) return;
+        if (IsFrozen == true)
+        {
+            audioSource.Pause();
+            return;
+        }
 
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -43,8 +53,23 @@ public class Mover : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
+            audioSource.Pause();
             Cursor.visible = true;
             return;
+        }
+
+        print(isMoving);
+
+        if ((Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0) && !isMoving)
+        {
+            isMoving = true;
+            audioSource.Play();
+            print("Playing");
+        }
+        else if (Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0)
+        {
+            audioSource.Pause();
+            isMoving = false;
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -56,6 +81,8 @@ public class Mover : MonoBehaviour
                 playerCharacter.localScale = new Vector3(playerCharacter.localScale.x * 0.5f, playerCharacter.localScale.y * 0.25f, 
                     playerCharacter.localScale.z * 0.5f);
                 moveSpeed /= 2;
+
+                crouchPlayer.PlayRandomAudio();
             }
             else
             {
@@ -71,13 +98,17 @@ public class Mover : MonoBehaviour
         {
             Jump();
         }
+
         
+
     }
 
     private void Jump()
     {
         if (!canJump || isCrouched) return;
         rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+
+        jumpPlayer.PlayRandomAudio();
 
         StartCoroutine(JumpCoolDown());
     }

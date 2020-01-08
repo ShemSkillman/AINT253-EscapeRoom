@@ -1,0 +1,27 @@
+REFERENCES
+
+AUDIO
+
+Ocean background ambiance
+https://www.youtube.com/watch?v=N2p-5LPnsJM
+
+Background music tracks
+https://www.youtube.com/watch?v=ThlyWaR-mUs&list=PL3EKvKxm8sLgASQ7AgUJgqTkHqRYwJijQ&index=2&t=0s
+https://www.youtube.com/watch?v=9QGMTZZsS9Y&list=PL3EKvKxm8sLgASQ7AgUJgqTkHqRYwJijQ&index=2
+https://www.youtube.com/watch?v=uF5bNOlGpFs&list=PL3EKvKxm8sLgASQ7AgUJgqTkHqRYwJijQ&index=3
+https://www.youtube.com/watch?v=Z5vk0VRxsPs&list=PL3EKvKxm8sLgASQ7AgUJgqTkHqRYwJijQ&index=4
+
+VISUAL
+
+Ocean water prefab from the Unity Standard assets pack
+https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-for-unity-2017-3-32351
+
+The advanced water prefab used in the game is in directory \Standard Assets\Environment\Water\Water4\Prefabs of the standard assets pack
+
+FONTS
+
+Tropical Forest
+https://www.dafont.com/tropical-forest.font
+
+DS-Digital
+https://www.dafont.com/ds-digital.font
